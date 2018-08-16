@@ -159,6 +159,11 @@ else()
 
         set_target_properties(freespace PROPERTIES PREFIX "lib")
 
+        if (LIBFREESPACE_LIB_TYPE STREQUAL "SHARED")
+            add_definitions(-DLIBFREESPACE_EXPORTS)
+            set_target_properties(freespace PROPERTIES IMPORT_PREFIX "lib")
+        endif()
+
         target_link_libraries(freespace ${WINHID_LIBRARIES})
 
     elseif(UNIX)
